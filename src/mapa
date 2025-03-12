@@ -1,0 +1,6 @@
+kutnaHora,dablovka,grunta,staraKutna,miskovice,bylany
+grunta,kutnaHora,staraKutna
+bylany,kutnaHora,miskovice
+staraKutna,kutnaHora,grunta
+dablovka,kutnaHora
+miskovice,bylany,kutnaHora
