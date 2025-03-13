@@ -18,7 +18,10 @@ Je možné že ze začátku nebudeš moct mluvit se všemy.
 4 - inventory
 Napiš "inventory" aby se ti ukázal tvůj současný inventář se všemy itemy které si doposuď nasbíral.
 
-5 - exit
+5 - help
+Napiš "help" a oteře se ti tato nápověda.
+
+6 - exit
 Napiš "exit" pro ukončení hry.
 Postup se po ukončení neukládá takže pokud jednou ukončíš tak začínáš svou cestu znovu.
 
