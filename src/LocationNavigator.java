@@ -32,9 +32,9 @@ class LocationNavigator {
     }
 
     private void addItemsToLocations() {
-        Location bylany = locations.get("Bylany");
+        Location bylany = locations.get("bylany");
         if (bylany != null) {
-            bylany.addItem(new Item("Broken Wheel", "A rusty broken wheel. It might be useful."));
+            bylany.addItem(new Item("Broken Wheel", "A rusty broken wheel that might be usefull"));
         }
 
     }
