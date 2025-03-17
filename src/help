@@ -1,8 +1,3 @@
-Průvodce hrou:
-Probudil jsi se v Bylanech, tvým úkolem je procházet lokace a plnit úkoly zadané ostatníma bytostma.
-Cíl hry je jednoduchý, nasbírat dostatek peněz nebo dostatek reputace.
-Peníze požiješ na postavení tvé vysněné kovárny a reputaci na získání lásky tvého života Terezy.
-
 Commandy:
 1 - move
 Napiš "move" + město do kterého se chceš přesunout.
@@ -21,7 +16,10 @@ Napiš "inventory" aby se ti ukázal tvůj současný inventář se všemy itemy
 5 - help
 Napiš "help" a oteře se ti tato nápověda.
 
-6 - exit
+6 - story
+Po napsání "story" se ti otevře průvodce hrou.
+
+7 - exit
 Napiš "exit" pro ukončení hry.
 Postup se po ukončení neukládá takže pokud jednou ukončíš tak začínáš svou cestu znovu.
 
