@@ -27,6 +27,7 @@ class LocationNavigator {
         }
 
         addItemsToLocations();
+        addNPCsToLocations();
     }
 
     private void addItemsToLocations() {
@@ -36,12 +37,25 @@ class LocationNavigator {
         }
     }
 
+    private void addNPCsToLocations() {
+        Location bylany = locations.get("bylany");
+        if (bylany != null) {
+            bylany.addNPC(new NPC("Blacksmith"));
+        }
+
+        Location kutnaHora = locations.get("kutnaHora");
+        if (kutnaHora != null) {
+            kutnaHora.addNPC(new NPC("Merchant"));
+            kutnaHora.addNPC(new NPC("Tereza"));
+        }
+    }
+
     public void navigate() {
         Scanner scanner = new Scanner(System.in);
         player = new Player("Hero", locations.values().iterator().next());
 
-        helpCommand = new HelpCommand("C:\\Users\\tomca\\OneDrive\\Plocha\\ForgeYourDestiny_Tuhacek2\\src\\help");
-        storyCommand = new StoryCommand("C:\\Users\\tomca\\OneDrive\\Plocha\\ForgeYourDestiny_Tuhacek2\\src\\story");
+        helpCommand = new HelpCommand("help.txt");
+        storyCommand = new StoryCommand("story.txt");
 
         while (true) {
             System.out.println("\nYou are at: " + player.currentLocation.name);
@@ -50,6 +64,15 @@ class LocationNavigator {
             } else {
                 System.out.println("No available paths from here.");
             }
+
+            if (!player.currentLocation.getNPCs().isEmpty()) {
+                System.out.print("NPCs here: ");
+                for (NPC npc : player.currentLocation.getNPCs()) {
+                    System.out.print(npc.name + " ");
+                }
+                System.out.println();
+            }
+
             System.out.print("Enter command (move [direction], pickup [item], talk [character], inventory, help, story, exit): ");
             String input = scanner.nextLine().trim();
             String[] commandParts = input.split(" ");
@@ -62,7 +85,7 @@ class LocationNavigator {
             } else if (commandParts[0].equalsIgnoreCase("pickup") && commandParts.length > 1) {
                 pickUpItem(commandParts[1]);
             } else if (commandParts[0].equalsIgnoreCase("talk") && commandParts.length > 1) {
-                talkToCharacter(commandParts[1]);
+                talkToNPC(commandParts[1]);
             } else if (input.equalsIgnoreCase("inventory")) {
                 player.showInventory();
             } else if (input.equalsIgnoreCase("help")) {
@@ -91,8 +114,13 @@ class LocationNavigator {
         }
     }
 
-    private void talkToCharacter(String characterName) {
-        Character character = new Character(characterName);
-        player.talkTo(character);
+    private void talkToNPC(String npcName) {
+        for (NPC npc : player.currentLocation.getNPCs()) {
+            if (npc.name.equalsIgnoreCase(npcName)) {
+                npc.interact();
+                return;
+            }
+        }
+        System.out.println("This character is not here.");
     }
 }

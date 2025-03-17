@@ -11,7 +11,7 @@ class StoryCommand implements Command {
     public void execute(Player player) {
         File file = new File(filePath);
         if (!file.exists()) {
-            System.out.println("Soubor s příběhem nenalezen: " + filePath);
+            System.out.println("File with story was not found: " + filePath);
             return;
         }
 
@@ -21,7 +21,7 @@ class StoryCommand implements Command {
                 System.out.println(line);
             }
         } catch (IOException e) {
-            System.out.println("Chyba při čtení příběhového souboru: " + e.getMessage());
+            System.out.println("Error while loading a story file: " + e.getMessage());
         }
     }
 }

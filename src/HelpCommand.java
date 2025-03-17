@@ -15,7 +15,7 @@ class HelpCommand implements Command {
                 System.out.println(line);
             }
         } catch (IOException e) {
-            System.out.println("Chyba při čtení nápovědy: " + e.getMessage());
+            System.out.println("Error while reading help file: " + e.getMessage());
         }
     }
 }

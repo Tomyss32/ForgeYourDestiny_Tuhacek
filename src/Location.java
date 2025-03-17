@@ -1,17 +1,20 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 class Location {
-    String name;
-    Map<String, Location> exits;
-    List<Item> items;
+    public String name;
+    public Map<String, Location> exits;
+    public List<Item> items;
+    public List<NPC> npcs;
 
     public Location(String name) {
         this.name = name;
         this.exits = new HashMap<>();
         this.items = new ArrayList<>();
+        this.npcs = new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void addExit(String direction, Location destination) {
@@ -22,7 +25,19 @@ class Location {
         items.add(item);
     }
 
+    public void addNPC(NPC npc) {
+        npcs.add(npc);
+    }
+
+    public List<NPC> getNPCs() {
+        return npcs;
+    }
+
     public List<Item> getItems() {
         return items;
+    }
+
+    public Map<String, Location> getExits() {
+        return exits;
     }
 }
