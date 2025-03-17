@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -8,6 +6,7 @@ import java.util.Scanner;
 class LocationNavigator {
     private Map<String, Location> locations = new HashMap<>();
     private Player player;
+    private HelpCommand helpCommand;
 
     public void loadMap(String filename) {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
@@ -32,16 +31,17 @@ class LocationNavigator {
     }
 
     private void addItemsToLocations() {
-        Location bylany = locations.get("bylany");
+        Location bylany = locations.get("Bylany");
         if (bylany != null) {
-            bylany.addItem(new Item("Wheel", "A rusty broken wheel that might be usefull"));
+            bylany.addItem(new Item("Broken Wheel", "A rusty broken wheel. It might be useful."));
         }
-
     }
 
     public void navigate() {
         Scanner scanner = new Scanner(System.in);
         player = new Player("Hero", locations.values().iterator().next());
+
+        helpCommand = new HelpCommand("C:\\Users\\tomca\\OneDrive\\Plocha\\ForgeYourDestiny_Tuhacek2\\src\\help");
 
         while (true) {
             System.out.println("You are at: " + player.currentLocation.name);
@@ -50,7 +50,7 @@ class LocationNavigator {
                 break;
             }
             System.out.println("You can go to: " + String.join(", ", player.currentLocation.exits.keySet()));
-            System.out.print("Enter command (move [direction], pickup [item], talk [character], inventory, or 'exit' to quit): ");
+            System.out.print("Enter command (move [direction], pickup [item], talk [character], inventory, help, or 'exit' to quit): ");
             String input = scanner.nextLine().trim();
             String[] commandParts = input.split(" ");
 
@@ -76,10 +76,12 @@ class LocationNavigator {
                 player.talkTo(character);
             } else if (commandParts[0].equalsIgnoreCase("inventory")) {
                 player.showInventory();
+            } else if (commandParts[0].equalsIgnoreCase("help")) {
+                helpCommand.execute(player);
             } else {
                 System.out.println("Invalid command. Try again.");
             }
         }
         scanner.close();
     }
-    }
+}
