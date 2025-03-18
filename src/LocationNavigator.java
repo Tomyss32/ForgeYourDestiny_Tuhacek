@@ -38,12 +38,12 @@ class LocationNavigator {
     }
 
     private void addNPCsToLocations() {
-        Location bylany = locations.get("bylany");
+        Location bylany = locations.get("Bylany");
         if (bylany != null) {
-            bylany.addNPC(new NPC("Blacksmith"));
+            bylany.addNPC(new NPC("Old Blacksmith"));
         }
 
-        Location kutnaHora = locations.get("kutnaHora");
+        Location kutnaHora = locations.get("Kutná Hora");
         if (kutnaHora != null) {
             kutnaHora.addNPC(new NPC("Merchant"));
             kutnaHora.addNPC(new NPC("Tereza"));
@@ -52,15 +52,17 @@ class LocationNavigator {
 
     public void navigate() {
         Scanner scanner = new Scanner(System.in);
-        player = new Player("Hero", locations.values().iterator().next());
+        player = new Player("Hero", locations.get("bylany"));
 
         helpCommand = new HelpCommand("help.txt");
         storyCommand = new StoryCommand("story.txt");
+        InspectCommand inspectCommand = new InspectCommand("locations");
 
         while (true) {
-            System.out.println("\nYou are at: " + player.currentLocation.name);
-            if (!player.currentLocation.exits.isEmpty()) {
-                System.out.println("You can go to: " + String.join(", ", player.currentLocation.exits.keySet()));
+            System.out.println("\nYou are at: " + player.currentLocation.getName());
+
+            if (!player.currentLocation.getExits().isEmpty()) {
+                System.out.println("You can go to: " + String.join(", ", player.currentLocation.getExits().keySet()));
             } else {
                 System.out.println("No available paths from here.");
             }
@@ -68,24 +70,26 @@ class LocationNavigator {
             if (!player.currentLocation.getNPCs().isEmpty()) {
                 System.out.print("NPCs here: ");
                 for (NPC npc : player.currentLocation.getNPCs()) {
-                    System.out.print(npc.name + " ");
+                    System.out.print(npc.getName() + " ");
                 }
                 System.out.println();
             }
 
-            System.out.print("Enter command (move [direction], pickup [item], talk [character], inventory, help, story, exit): ");
+            System.out.print("Enter command (move, pickup, talk, inventory, inspect [location], help, story, exit): ");
             String input = scanner.nextLine().trim();
-            String[] commandParts = input.split(" ");
+            String[] commandParts = input.split(" ", 2);
 
             if (input.equalsIgnoreCase("exit")) {
                 System.out.println("Exiting game...");
                 break;
             } else if (commandParts[0].equalsIgnoreCase("move") && commandParts.length > 1) {
-                player.move(commandParts[1]);
+                movePlayer(commandParts[1]);
             } else if (commandParts[0].equalsIgnoreCase("pickup") && commandParts.length > 1) {
                 pickUpItem(commandParts[1]);
             } else if (commandParts[0].equalsIgnoreCase("talk") && commandParts.length > 1) {
                 talkToNPC(commandParts[1]);
+            } else if (commandParts[0].equalsIgnoreCase("inspect") && commandParts.length > 1) {
+                inspectCommand.inspectLocation(commandParts[1]);
             } else if (input.equalsIgnoreCase("inventory")) {
                 player.showInventory();
             } else if (input.equalsIgnoreCase("help")) {
@@ -97,6 +101,15 @@ class LocationNavigator {
             }
         }
         scanner.close();
+    }
+
+    private void movePlayer(String direction) {
+        if (player.currentLocation.getExits().containsKey(direction)) {
+            player.currentLocation = player.currentLocation.getExits().get(direction);
+            System.out.println("You moved to: " + player.currentLocation.getName());
+        } else {
+            System.out.println("Invalid direction.");
+        }
     }
 
     private void pickUpItem(String itemName) {
@@ -116,7 +129,7 @@ class LocationNavigator {
 
     private void talkToNPC(String npcName) {
         for (NPC npc : player.currentLocation.getNPCs()) {
-            if (npc.name.equalsIgnoreCase(npcName)) {
+            if (npc.getName().equalsIgnoreCase(npcName)) {
                 npc.interact();
                 return;
             }
