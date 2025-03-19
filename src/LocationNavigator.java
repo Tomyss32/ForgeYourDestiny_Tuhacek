@@ -41,15 +41,27 @@ class LocationNavigator {
             bylany.addItem(new Item("SilverRing", "A valuable silver ring."));
         }
 
-        Location kutnaHora = locations.get("kutna_hora");
+        Location kutnaHora = locations.get("kutnaHora");
         if (kutnaHora != null) {
             kutnaHora.addItem(new Item("Potion", "A valuable Potion. Seems fishy."));
 
         }
-        Location staraKutna = locations.get("bylany");
+
+        Location staraKutna = locations.get("staraKutna");
         if (staraKutna != null) {
             staraKutna.addItem(new Item("OldJacket", "An old Jacket and ugly as hell too."));
         }
+
+        Location dablovka = locations.get("dablovka");
+        if (dablovka != null) {
+            dablovka.addItem(new Item("Soap", "Im finally getting a bath!!!!!."));
+        }
+
+        Location miskovice = locations.get("miskovice");
+        if (miskovice != null) {
+            miskovice.addItem(new Item("Neklace", "Am i gonna steal it? Nah i shouldnt."));
+        }
+
     }
 
     private void addNPCsToLocations() {
@@ -74,12 +86,14 @@ class LocationNavigator {
             Caroline.addTradeItem("Soap", 35);
             miskovice.addNPC(Caroline);
         }
+
         Location staraKutna = locations.get("staraKutna");
         if (staraKutna != null) {
             NPC Grandmother = new NPC("Grandmother", true);
             Grandmother.addTradeItem("Neklace", 35);
             staraKutna.addNPC(Grandmother);
         }
+
         Location dablovka = locations.get("dablovka");
         if (dablovka != null) {
             NPC Devil = new NPC("Devil", true);
@@ -91,7 +105,7 @@ class LocationNavigator {
 
     public void navigate() {
         Scanner scanner = new Scanner(System.in);
-        player = new Player("Hero", locations.get("bylany"));
+        player = new Player("Pepa", locations.get("bylany"));
         HistoryCommand historyCommand = new HistoryCommand("C:\\Users\\tomca\\OneDrive\\Plocha\\ForgeYourDestiny_Tuhacek2\\src\\history");
         HelpCommand helpCommand = new HelpCommand("C:\\Users\\tomca\\OneDrive\\Plocha\\ForgeYourDestiny_Tuhacek2\\src\\help");
         StoryCommand storyCommand = new StoryCommand("C:\\Users\\tomca\\OneDrive\\Plocha\\ForgeYourDestiny_Tuhacek2\\src\\story");
