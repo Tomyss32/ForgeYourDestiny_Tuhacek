@@ -1,7 +1,7 @@
 class GiveCommand implements Command {
     @Override
     public void execute(Player player) {
-        System.out.println("Použij: give [název itemu] [název NPC]");
+        System.out.println("Use: give [item name] [NPC name]");
     }
 
     public void giveItem(Player player, String itemName, String npcName) {
@@ -15,7 +15,7 @@ class GiveCommand implements Command {
         }
 
         if (targetNPC == null) {
-            System.out.println("Toto NPC zde není.");
+            System.out.println("This NPC aint here.");
             return;
         }
 
@@ -28,22 +28,22 @@ class GiveCommand implements Command {
         }
 
         if (itemToGive == null) {
-            System.out.println("Tento předmět nemáš v inventáři.");
+            System.out.println("You aint got this item.");
             return;
         }
 
         if (!targetNPC.acceptsItem(itemName)) {
-            System.out.println(targetNPC.getName() + ": O tento předmět nemám zájem.");
+            System.out.println(targetNPC.getName() + ": I don't accept this item.");
             return;
         }
 
         int reward = targetNPC.getItemValue(itemName);
         if (targetNPC.givesMoney()) {
             player.addMoney(reward);
-            System.out.println(targetNPC.getName() + " ti dal " + reward + " zlatých za " + itemName + ".");
+            System.out.println(targetNPC.getName() + " gave you " + reward + " golden coins for " + itemName + ".");
         } else {
             player.addReputation(reward);
-            System.out.println(targetNPC.getName() + " ti zvýšil reputaci o " + reward + " bodů za " + itemName + ".");
+            System.out.println(targetNPC.getName() + " raised you reputation by " + reward + " for " + itemName + ".");
         }
 
         player.removeItem(itemToGive);

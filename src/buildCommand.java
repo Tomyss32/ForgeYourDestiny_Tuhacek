@@ -5,12 +5,12 @@ class BuildCommand implements Command {
     public void execute(Player player) {
         if (player.getMoney() >= REQUIRED_GOLD) {
             player.removeMoney(REQUIRED_GOLD);
-            System.out.println("Gratulujeme! Máš dostatek zlata a můžeš postavit svou vlastní kovárnu.");
-            System.out.println("Stavba byla úspěšně dokončena a nyní jsi hrdým majitelem kovárny!");
-            System.out.println("Hra končí. Děkujeme za hraní!");
+            System.out.println("Congratulations! You have enough gold to build your own forge.");
+            System.out.println("The construction was successfully completed, and you are now the proud owner of a forge!");
+            System.out.println("The game is over. Thank you for playing!");
             System.exit(0);
         } else {
-            System.out.println("Nemáš dostatek zlata na stavbu kovárny. Potřebuješ alespoň " + REQUIRED_GOLD + " zlatých.");
+            System.out.println("You don't have enough gold to build a forge. You need at least " + REQUIRED_GOLD + " gold.");
         }
     }
 }

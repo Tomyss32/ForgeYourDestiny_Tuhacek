@@ -16,7 +16,7 @@ class HelpCommand implements Command {
     private void readFile(String filePath) {
         File file = new File(filePath);
         if (!file.exists()) {
-            System.out.println("Soubor nápovědy nenalezen: " + filePath);
+            System.out.println("File help was not found: " + filePath);
             return;
         }
 
@@ -26,7 +26,7 @@ class HelpCommand implements Command {
                 System.out.println(line);
             }
         } catch (IOException e) {
-            System.out.println("Chyba při čtení souboru nápovědy: " + e.getMessage());
+            System.out.println("Error while reading help file: " + e.getMessage());
         }
     }
 }

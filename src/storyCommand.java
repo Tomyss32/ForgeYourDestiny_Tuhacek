@@ -16,7 +16,7 @@ class StoryCommand implements Command {
     private void readFile(String filePath) {
         File file = new File(filePath);
         if (!file.exists()) {
-            System.out.println("Soubor příběhu nenalezen: " + filePath);
+            System.out.println("File story was not found: " + filePath);
             return;
         }
 
@@ -26,7 +26,7 @@ class StoryCommand implements Command {
                 System.out.println(line);
             }
         } catch (IOException e) {
-            System.out.println("Chyba při čtení souboru příběhu: " + e.getMessage());
+            System.out.println("Error while reading story file: " + e.getMessage());
         }
     }
 }

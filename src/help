@@ -13,13 +13,25 @@ Je možné že ze začátku nebudeš moct mluvit se všemy.
 4 - inventory
 Napiš "inventory" aby se ti ukázal tvůj současný inventář se všemy itemy které si doposuď nasbíral.
 
-5 - help
+5 - give
+Napiš (give [item] [npc]) aby si předal item NPC.
+
+6 - history
+Napiš history aby ses dozvěděl historii o lokacích hry.
+
+7 - help
 Napiš "help" a oteře se ti tato nápověda.
 
-6 - story
+8 - story
 Po napsání "story" se ti otevře průvodce hrou.
 
-7 - exit
+9 - build
+Napiš build pro první konec hry.
+
+10 - marry
+Napiš marry pro druhý konec hry.
+
+11 - exit
 Napiš "exit" pro ukončení hry.
 Postup se po ukončení neukládá takže pokud jednou ukončíš tak začínáš svou cestu znovu.
 

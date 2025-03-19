@@ -18,8 +18,8 @@ class Character {
 }
 
 class NPC extends Character {
-    private Map<String, Integer> tradeItems; // Klíč = název itemu, Hodnota = kolik dá peněz/reputace
-    private boolean givesMoney; // True = dává peníze, False = dává reputaci
+    private Map<String, Integer> tradeItems;
+    private boolean givesMoney;
 
     public NPC(String name, boolean givesMoney) {
         super(name);

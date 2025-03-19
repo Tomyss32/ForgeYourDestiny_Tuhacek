@@ -27,7 +27,7 @@ class LocationNavigator {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Chyba při čtení souboru s mapou: " + e.getMessage());
+            System.out.println("Error while reading map file: " + e.getMessage());
         }
 
         addItemsToLocations();
@@ -66,9 +66,9 @@ class LocationNavigator {
     public void navigate() {
         Scanner scanner = new Scanner(System.in);
         player = new Player("Hero", locations.get("bylany"));
-        HistoryCommand historyCommand = new HistoryCommand("history.txt");
-        HelpCommand helpCommand = new HelpCommand("help.txt");
-        StoryCommand storyCommand = new StoryCommand("story.txt");
+        HistoryCommand historyCommand = new HistoryCommand("C:\\Users\\tomca\\OneDrive\\Plocha\\ForgeYourDestiny_Tuhacek2\\src\\history");
+        HelpCommand helpCommand = new HelpCommand("C:\\Users\\tomca\\OneDrive\\Plocha\\ForgeYourDestiny_Tuhacek2\\src\\help");
+        StoryCommand storyCommand = new StoryCommand("C:\\Users\\tomca\\OneDrive\\Plocha\\ForgeYourDestiny_Tuhacek2\\src\\story");
         giveCommand = new GiveCommand();
 
         while (true) {
@@ -86,7 +86,7 @@ class LocationNavigator {
                 System.out.println();
             }
 
-            System.out.print("Enter command (move, pickup, talk, inventory, give [item] [npc], history, help, story, exit): ");
+            System.out.print("Enter command (move, pickup, talk, inventory, give [item] [npc], history, help, story, build, marry, exit): ");
             String input = scanner.nextLine().trim();
             String[] commandParts = input.split(" ", 3);
 

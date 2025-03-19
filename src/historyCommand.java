@@ -9,14 +9,14 @@ class HistoryCommand implements Command {
 
     @Override
     public void execute(Player player) {
-        String filePath = new File(fileName).getAbsolutePath(); // Získání absolutní cesty
+        String filePath = new File(fileName).getAbsolutePath();
         readFile(filePath);
     }
 
     private void readFile(String filePath) {
         File file = new File(filePath);
         if (!file.exists()) {
-            System.out.println("Soubor historie nenalezen: " + filePath);
+            System.out.println("File History was not found: " + filePath);
             return;
         }
 
@@ -26,7 +26,7 @@ class HistoryCommand implements Command {
                 System.out.println(line);
             }
         } catch (IOException e) {
-            System.out.println("Chyba při čtení souboru historie: " + e.getMessage());
+            System.out.println("Error while reading history file: " + e.getMessage());
         }
     }
 }
