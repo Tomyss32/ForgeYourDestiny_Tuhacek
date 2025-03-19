@@ -37,30 +37,56 @@ class LocationNavigator {
     private void addItemsToLocations() {
         Location bylany = locations.get("bylany");
         if (bylany != null) {
-            bylany.addItem(new Item("Broken Wheel", "A rusty broken wheel. It might be useful."));
+            bylany.addItem(new Item("BrokenWheel", "A rusty broken wheel. It might be useful."));
             bylany.addItem(new Item("SilverRing", "A valuable silver ring."));
+        }
+
+        Location kutnaHora = locations.get("kutna_hora");
+        if (kutnaHora != null) {
+            kutnaHora.addItem(new Item("Potion", "A valuable Potion. Seems fishy."));
+
+        }
+        Location staraKutna = locations.get("bylany");
+        if (staraKutna != null) {
+            staraKutna.addItem(new Item("OldJacket", "An old Jacket and ugly as hell too."));
         }
     }
 
     private void addNPCsToLocations() {
         Location bylany = locations.get("bylany");
         if (bylany != null) {
-            NPC blacksmith = new NPC("Blacksmith", false);
-            blacksmith.addTradeItem("IronBar", 10);
+            NPC blacksmith = new NPC("Blacksmith", true);
+            blacksmith.addTradeItem("IronBars", 45);
             bylany.addNPC(blacksmith);
         }
 
         Location kutnaHora = locations.get("kutnaHora");
         if (kutnaHora != null) {
-            NPC merchant = new NPC("Merchant", false);
-            merchant.addTradeItem("SilverRing", 100);
-            merchant.addTradeItem("GoldenCoin", 100);
+            NPC merchant = new NPC("Merchant", true);
+            merchant.addTradeItem("SilverRing", 25);
+            merchant.addTradeItem("GoldenCoin", 50);
             kutnaHora.addNPC(merchant);
-
-            NPC tereza = new NPC("Tereza", false);
-            tereza.addTradeItem("Flower", 5);
-            kutnaHora.addNPC(tereza);
         }
+
+        Location miskovice = locations.get("miskovice");
+        if (miskovice != null) {
+            NPC Caroline = new NPC("Caroline", true);
+            Caroline.addTradeItem("Soap", 35);
+            miskovice.addNPC(Caroline);
+        }
+        Location staraKutna = locations.get("staraKutna");
+        if (staraKutna != null) {
+            NPC Grandmother = new NPC("Grandmother", true);
+            Grandmother.addTradeItem("Neklace", 35);
+            staraKutna.addNPC(Grandmother);
+        }
+        Location dablovka = locations.get("dablovka");
+        if (dablovka != null) {
+            NPC Devil = new NPC("Devil", true);
+            Devil.addTradeItem("Potion", 25);
+            dablovka.addNPC(Devil);
+        }
+
     }
 
     public void navigate() {
