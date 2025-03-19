@@ -6,7 +6,7 @@ class LocationNavigator {
     private Player player;
     private HelpCommand helpCommand;
     private StoryCommand storyCommand;
-    HistoryCommand historyCommand = new HistoryCommand("history.txt");
+    HistoryCommand historyCommand = new HistoryCommand("history");
     private GiveCommand giveCommand;
     MarryCommand marryCommand = new MarryCommand();
     BuildCommand buildCommand = new BuildCommand();
@@ -66,9 +66,9 @@ class LocationNavigator {
     public void navigate() {
         Scanner scanner = new Scanner(System.in);
         player = new Player("Hero", locations.get("bylany"));
-        helpCommand = new HelpCommand("help.txt");
-        storyCommand = new StoryCommand("story.txt");
-        historyCommand = new HistoryCommand("history.txt");
+        HistoryCommand historyCommand = new HistoryCommand("history.txt");
+        HelpCommand helpCommand = new HelpCommand("help.txt");
+        StoryCommand storyCommand = new StoryCommand("story.txt");
         giveCommand = new GiveCommand();
 
         while (true) {
@@ -101,14 +101,15 @@ class LocationNavigator {
                 talkToNPC(commandParts[1]);
             } else if (commandParts[0].equalsIgnoreCase("give") && commandParts.length > 2) {
                 giveCommand.giveItem(player, commandParts[1], commandParts[2]);
-            } else if (input.equalsIgnoreCase("history")) {
-                historyCommand.execute(player);
+
             } else if (input.equalsIgnoreCase("marry")) {
                 marryCommand.execute(player);
             } else if (input.equalsIgnoreCase("build")) {
                 buildCommand.execute(player);
             } else if (input.equalsIgnoreCase("inventory")) {
                 player.showInventory();
+            } else if (input.equalsIgnoreCase("history")) {
+                historyCommand.execute(player);
             } else if (input.equalsIgnoreCase("help")) {
                 helpCommand.execute(player);
             } else if (input.equalsIgnoreCase("story")) {

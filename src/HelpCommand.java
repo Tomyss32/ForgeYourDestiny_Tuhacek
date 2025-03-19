@@ -1,21 +1,32 @@
 import java.io.*;
 
 class HelpCommand implements Command {
-    private String filePath;
+    private String fileName;
 
-    public HelpCommand(String filePath) {
-        this.filePath = filePath;
+    public HelpCommand(String fileName) {
+        this.fileName = fileName;
     }
 
     @Override
     public void execute(Player player) {
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        String filePath = new File(fileName).getAbsolutePath();
+        readFile(filePath);
+    }
+
+    private void readFile(String filePath) {
+        File file = new File(filePath);
+        if (!file.exists()) {
+            System.out.println("Soubor nápovědy nenalezen: " + filePath);
+            return;
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
                 System.out.println(line);
             }
         } catch (IOException e) {
-            System.out.println("Error while reading help file: " + e.getMessage());
+            System.out.println("Chyba při čtení souboru nápovědy: " + e.getMessage());
         }
     }
 }

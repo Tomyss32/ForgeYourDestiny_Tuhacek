@@ -1,14 +1,19 @@
 import java.io.*;
 
 class HistoryCommand implements Command {
-    private String filePath;
+    private String fileName;
 
-    public HistoryCommand(String filePath) {
-        this.filePath = filePath;
+    public HistoryCommand(String fileName) {
+        this.fileName = fileName;
     }
 
     @Override
     public void execute(Player player) {
+        String filePath = new File(fileName).getAbsolutePath(); // Získání absolutní cesty
+        readFile(filePath);
+    }
+
+    private void readFile(String filePath) {
         File file = new File(filePath);
         if (!file.exists()) {
             System.out.println("Soubor historie nenalezen: " + filePath);
