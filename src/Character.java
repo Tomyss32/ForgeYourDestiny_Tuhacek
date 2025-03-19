@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 class Character {
     protected String name;
 
@@ -15,8 +18,29 @@ class Character {
 }
 
 class NPC extends Character {
-    public NPC(String name) {
+    private Map<String, Integer> tradeItems; // Klíč = název itemu, Hodnota = kolik dá peněz/reputace
+    private boolean givesMoney; // True = dává peníze, False = dává reputaci
+
+    public NPC(String name, boolean givesMoney) {
         super(name);
+        this.givesMoney = givesMoney;
+        this.tradeItems = new HashMap<>();
+    }
+
+    public void addTradeItem(String itemName, int value) {
+        tradeItems.put(itemName, value);
+    }
+
+    public boolean acceptsItem(String itemName) {
+        return tradeItems.containsKey(itemName);
+    }
+
+    public int getItemValue(String itemName) {
+        return tradeItems.getOrDefault(itemName, 0);
+    }
+
+    public boolean givesMoney() {
+        return givesMoney;
     }
 
     @Override
@@ -44,4 +68,6 @@ class NPC extends Character {
 
         }
     }
+
+
 }

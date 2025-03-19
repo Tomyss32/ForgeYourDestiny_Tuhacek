@@ -5,21 +5,15 @@ class Player {
     private String name;
     public Location currentLocation;
     private List<Item> inventory;
+    private int money;
+    private int reputation;
 
     public Player(String name, Location startLocation) {
         this.name = name;
         this.currentLocation = startLocation;
         this.inventory = new ArrayList<>();
-    }
-
-    public void move(String direction) {
-        if (currentLocation.exits.containsKey(direction)) {
-            currentLocation = currentLocation.exits.get(direction);
-            System.out.println("You moved to: " + currentLocation.name);
-            displayAvailableItems();
-        } else {
-            System.out.println("Invalid direction.");
-        }
+        this.money = 0;
+        this.reputation = 0;
     }
 
     public void pickUpItem(Item item) {
@@ -28,8 +22,20 @@ class Player {
         System.out.println("Picked up: " + item.getName());
     }
 
-    public void talkTo(Character character) {
-        character.interact();
+    public List<Item> getInventory() {
+        return inventory;
+    }
+
+    public void removeItem(Item item) {
+        inventory.remove(item);
+    }
+
+    public void addMoney(int amount) {
+        money += amount;
+    }
+
+    public void addReputation(int amount) {
+        reputation += amount;
     }
 
     public void showInventory() {
@@ -41,14 +47,17 @@ class Player {
                 System.out.println("- " + item.getName() + ": " + item.getDescription());
             }
         }
+        System.out.println("Money: " + money + " gold");
+        System.out.println("Reputation: " + reputation + " points");
+    }
+    public int getReputation() {
+        return reputation;
+    }
+    public int getMoney() {
+        return money;
     }
 
-    private void displayAvailableItems() {
-        if (!currentLocation.getItems().isEmpty()) {
-            System.out.println("You can pick up the following items:");
-            for (Item item : currentLocation.getItems()) {
-                System.out.println("- " + item.getName() + ": " + item.getDescription());
-            }
-        }
+    public void removeMoney(int amount) {
+        money -= amount;
     }
 }

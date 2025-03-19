@@ -6,6 +6,10 @@ class LocationNavigator {
     private Player player;
     private HelpCommand helpCommand;
     private StoryCommand storyCommand;
+    HistoryCommand historyCommand = new HistoryCommand("history.txt");
+    private GiveCommand giveCommand;
+    MarryCommand marryCommand = new MarryCommand();
+    BuildCommand buildCommand = new BuildCommand();
 
     public void loadMap(String filename) {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
@@ -31,40 +35,47 @@ class LocationNavigator {
     }
 
     private void addItemsToLocations() {
-        Location bylany = locations.get("Bylany");
+        Location bylany = locations.get("bylany");
         if (bylany != null) {
             bylany.addItem(new Item("Broken Wheel", "A rusty broken wheel. It might be useful."));
+            bylany.addItem(new Item("SilverRing", "A valuable silver ring."));
         }
     }
 
     private void addNPCsToLocations() {
-        Location bylany = locations.get("Bylany");
+        Location bylany = locations.get("bylany");
         if (bylany != null) {
-            bylany.addNPC(new NPC("Old Blacksmith"));
+            NPC blacksmith = new NPC("Blacksmith", false);
+            blacksmith.addTradeItem("IronBar", 10);
+            bylany.addNPC(blacksmith);
         }
 
-        Location kutnaHora = locations.get("Kutná Hora");
+        Location kutnaHora = locations.get("kutnaHora");
         if (kutnaHora != null) {
-            kutnaHora.addNPC(new NPC("Merchant"));
-            kutnaHora.addNPC(new NPC("Tereza"));
+            NPC merchant = new NPC("Merchant", false);
+            merchant.addTradeItem("SilverRing", 100);
+            merchant.addTradeItem("GoldenCoin", 100);
+            kutnaHora.addNPC(merchant);
+
+            NPC tereza = new NPC("Tereza", false);
+            tereza.addTradeItem("Flower", 5);
+            kutnaHora.addNPC(tereza);
         }
     }
 
     public void navigate() {
         Scanner scanner = new Scanner(System.in);
         player = new Player("Hero", locations.get("bylany"));
-
         helpCommand = new HelpCommand("help.txt");
         storyCommand = new StoryCommand("story.txt");
-        InspectCommand inspectCommand = new InspectCommand("locations");
+        historyCommand = new HistoryCommand("history.txt");
+        giveCommand = new GiveCommand();
 
         while (true) {
             System.out.println("\nYou are at: " + player.currentLocation.getName());
 
             if (!player.currentLocation.getExits().isEmpty()) {
                 System.out.println("You can go to: " + String.join(", ", player.currentLocation.getExits().keySet()));
-            } else {
-                System.out.println("No available paths from here.");
             }
 
             if (!player.currentLocation.getNPCs().isEmpty()) {
@@ -75,9 +86,9 @@ class LocationNavigator {
                 System.out.println();
             }
 
-            System.out.print("Enter command (move, pickup, talk, inventory, inspect [location], help, story, exit): ");
+            System.out.print("Enter command (move, pickup, talk, inventory, give [item] [npc], history, help, story, exit): ");
             String input = scanner.nextLine().trim();
-            String[] commandParts = input.split(" ", 2);
+            String[] commandParts = input.split(" ", 3);
 
             if (input.equalsIgnoreCase("exit")) {
                 System.out.println("Exiting game...");
@@ -88,8 +99,14 @@ class LocationNavigator {
                 pickUpItem(commandParts[1]);
             } else if (commandParts[0].equalsIgnoreCase("talk") && commandParts.length > 1) {
                 talkToNPC(commandParts[1]);
-            } else if (commandParts[0].equalsIgnoreCase("inspect") && commandParts.length > 1) {
-                inspectCommand.inspectLocation(commandParts[1]);
+            } else if (commandParts[0].equalsIgnoreCase("give") && commandParts.length > 2) {
+                giveCommand.giveItem(player, commandParts[1], commandParts[2]);
+            } else if (input.equalsIgnoreCase("history")) {
+                historyCommand.execute(player);
+            } else if (input.equalsIgnoreCase("marry")) {
+                marryCommand.execute(player);
+            } else if (input.equalsIgnoreCase("build")) {
+                buildCommand.execute(player);
             } else if (input.equalsIgnoreCase("inventory")) {
                 player.showInventory();
             } else if (input.equalsIgnoreCase("help")) {
