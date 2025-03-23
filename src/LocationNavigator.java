@@ -46,10 +46,9 @@ class LocationNavigator {
             kutnaHora.addItem(new Item("Potion", "A valuable Potion. Seems fishy."));
 
         }
-
         Location staraKutna = locations.get("staraKutna");
         if (staraKutna != null) {
-            staraKutna.addItem(new Item("OldJacket", "An old Jacket and ugly as hell too."));
+            staraKutna.addItem(new Item("Food", "Its a piece of art, i want to eat this so bad..."));
         }
 
         Location dablovka = locations.get("dablovka");
@@ -61,14 +60,19 @@ class LocationNavigator {
         if (miskovice != null) {
             miskovice.addItem(new Item("Neklace", "Am i gonna steal it? Nah i shouldnt."));
         }
+        Location grunta = locations.get("grunta");
+        if (grunta != null) {
+            grunta.addItem(new Item("Leather", "A valuable piece of leather. Looks like a good quality too."));
+
+        }
 
     }
 
     private void addNPCsToLocations() {
         Location bylany = locations.get("bylany");
         if (bylany != null) {
-            NPC blacksmith = new NPC("Blacksmith", true);
-            blacksmith.addTradeItem("IronBars", 45);
+            NPC blacksmith = new NPC("Blacksmith", false);
+            blacksmith.addTradeItem("Food", 45);
             bylany.addNPC(blacksmith);
         }
 
@@ -99,6 +103,12 @@ class LocationNavigator {
             NPC Devil = new NPC("Devil", true);
             Devil.addTradeItem("Potion", 25);
             dablovka.addNPC(Devil);
+        }
+        Location grunta = locations.get("grunta");
+        if (grunta != null) {
+            NPC Henry = new NPC("Henry", true);
+            Henry.addTradeItem("Leather", 20);
+            grunta.addNPC(Henry);
         }
 
     }

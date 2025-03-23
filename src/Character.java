@@ -74,6 +74,14 @@ class NPC extends Character {
                 System.out.println("After that bath take this old rusty Neklace and take it to Stara Kutna");
                 System.out.println("There you will find a Grandmother");
                 System.out.println("Give it to her for some shiny gold");
+                break;
+
+            case "Grandmother":
+                System.out.println("Grandmother: The last 20 years of my life i have been searching for one uniqe neklace");
+                System.out.println("If you have the Neklace i will shower zou in gold");
+                System.out.println("if not though, take this food to that old fool at bylany");
+                System.out.println("I hope he will like it!");
+                break;
 
         }
     }
