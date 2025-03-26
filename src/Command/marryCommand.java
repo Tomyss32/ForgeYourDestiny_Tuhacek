@@ -1,4 +1,11 @@
-class MarryCommand implements Command {
+package Command;
+
+import Game.Player;
+
+public class marryCommand implements Command {
+
+
+
     @Override
     public void execute(Player player) {
         if (player.getReputation() >= 100) {

@@ -1,7 +1,9 @@
+package Game;
+
 import java.util.ArrayList;
 import java.util.List;
 
-class Player {
+public class Player {
     private String name;
     public Location currentLocation;
     private List<Item> inventory;

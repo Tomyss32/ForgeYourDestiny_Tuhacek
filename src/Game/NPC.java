@@ -1,23 +1,9 @@
+package Game;
+
 import java.util.HashMap;
 import java.util.Map;
 
-class Character {
-    protected String name;
-
-    public Character(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void interact() {
-        System.out.println(name + ": Hello, traveler!");
-    }
-}
-
-class NPC extends Character {
+public class NPC extends Character {
     private Map<String, Integer> tradeItems;
     private boolean givesMoney;
 
@@ -85,6 +71,4 @@ class NPC extends Character {
 
         }
     }
-
-
 }

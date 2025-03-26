@@ -1,15 +1,23 @@
+package Game;
+
+import Command.*;
+
 import java.io.*;
 import java.util.*;
 
-class LocationNavigator {
+public class LocationNavigator {
     private Map<String, Location> locations = new HashMap<>();
     private Player player;
-    private HelpCommand helpCommand;
-    private StoryCommand storyCommand;
-    HistoryCommand historyCommand = new HistoryCommand("history");
-    private GiveCommand giveCommand;
-    MarryCommand marryCommand = new MarryCommand();
-    BuildCommand buildCommand = new BuildCommand();
+    private giveCommand giveCommand;
+    private buildCommand buildCommand;
+    private historyCommand historyCommand;
+    private marryCommand marryCommand;
+
+    public LocationNavigator() {
+        this.buildCommand = new buildCommand();
+        this.historyCommand = new historyCommand("history");
+        this.marryCommand = new marryCommand();
+    }
 
     public void loadMap(String filename) {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
@@ -116,10 +124,10 @@ class LocationNavigator {
     public void navigate() {
         Scanner scanner = new Scanner(System.in);
         player = new Player("Pepa", locations.get("bylany"));
-        HistoryCommand historyCommand = new HistoryCommand("C:\\Users\\tomca\\OneDrive\\Plocha\\ForgeYourDestiny_Tuhacek2\\src\\history");
-        HelpCommand helpCommand = new HelpCommand("C:\\Users\\tomca\\OneDrive\\Plocha\\ForgeYourDestiny_Tuhacek2\\src\\help");
-        StoryCommand storyCommand = new StoryCommand("C:\\Users\\tomca\\OneDrive\\Plocha\\ForgeYourDestiny_Tuhacek2\\src\\story");
-        giveCommand = new GiveCommand();
+        historyCommand historyCommand = new historyCommand("history");
+        helpCommand helpCommand = new helpCommand("help");
+        storyCommand storyCommand = new storyCommand("story");
+        giveCommand = new giveCommand();
 
         while (true) {
             System.out.println("\nYou are at: " + player.currentLocation.getName());

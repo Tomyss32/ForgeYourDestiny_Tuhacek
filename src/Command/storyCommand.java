@@ -1,9 +1,13 @@
+package Command;
+
+import Game.Player;
+
 import java.io.*;
 
-class StoryCommand implements Command {
+public class storyCommand implements Command {
     private String fileName;
 
-    public StoryCommand(String fileName) {
+    public storyCommand(String fileName) {
         this.fileName = fileName;
     }
 

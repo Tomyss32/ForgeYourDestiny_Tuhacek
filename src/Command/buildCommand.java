@@ -1,4 +1,8 @@
-class BuildCommand implements Command {
+package Command;
+
+import Game.Player;
+
+public class buildCommand implements Command {
     private static final int REQUIRED_GOLD = 100;
 
     @Override

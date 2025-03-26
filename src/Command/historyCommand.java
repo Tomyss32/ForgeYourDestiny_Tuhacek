@@ -1,11 +1,16 @@
+package Command;
+
+import Game.Player;
+
 import java.io.*;
 
-class HelpCommand implements Command {
+public class historyCommand implements Command {
     private String fileName;
 
-    public HelpCommand(String fileName) {
+    public historyCommand(String fileName) {
         this.fileName = fileName;
     }
+
 
     @Override
     public void execute(Player player) {
@@ -16,7 +21,7 @@ class HelpCommand implements Command {
     private void readFile(String filePath) {
         File file = new File(filePath);
         if (!file.exists()) {
-            System.out.println("File help was not found: " + filePath);
+            System.out.println("File History was not found: " + filePath);
             return;
         }
 
@@ -26,7 +31,9 @@ class HelpCommand implements Command {
                 System.out.println(line);
             }
         } catch (IOException e) {
-            System.out.println("Error while reading help file: " + e.getMessage());
+            System.out.println("Error while reading history file: " + e.getMessage());
         }
     }
+
+
 }

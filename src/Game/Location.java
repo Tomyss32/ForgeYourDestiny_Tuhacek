@@ -1,6 +1,8 @@
+package Game;
+
 import java.util.*;
 
-class Location {
+public class Location {
     public String name;
     public Map<String, Location> exits;
     public List<Item> items;

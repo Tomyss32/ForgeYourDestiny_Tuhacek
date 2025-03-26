@@ -1,4 +1,10 @@
-class GiveCommand implements Command {
+package Command;
+
+import Game.Item;
+import Game.NPC;
+import Game.Player;
+
+public class giveCommand implements Command {
     @Override
     public void execute(Player player) {
         System.out.println("Use: give [item name] [NPC name]");
