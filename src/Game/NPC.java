@@ -3,32 +3,79 @@ package Game;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Represents a non-player character (NPC) in the game.
+ * NPCs can trade items, provide quests, and interact with the player.
+ */
 public class NPC extends Character {
     private Map<String, Integer> tradeItems;
     private boolean givesMoney;
 
+    /**
+     * Constructs an NPC with a specified name and whether they give money in exchange for items.
+     *
+     * @param name The name of the NPC.
+     * @param givesMoney True if the NPC gives money for items, false if they provide reputation.
+     */
     public NPC(String name, boolean givesMoney) {
         super(name);
         this.givesMoney = givesMoney;
         this.tradeItems = new HashMap<>();
     }
 
+    /**
+     * Constructs an NPC with a specified name.
+     *
+     * @param name The name of the NPC.
+     */
+    public NPC(String name) {
+        super(name);
+    }
+
+    /**
+     * Adds an item that the NPC is willing to trade.
+     *
+     * @param itemName The name of the item.
+     * @param value    The value of the item if its money or reputation.
+     */
     public void addTradeItem(String itemName, int value) {
         tradeItems.put(itemName, value);
     }
 
+    /**
+     * Checks if the NPC accepts a specific item for trade.
+     *
+     * @param itemName The name of the item.
+     * @return True if the NPC accepts the item, false otherwise.
+     */
     public boolean acceptsItem(String itemName) {
         return tradeItems.containsKey(itemName);
     }
 
+    /**
+     * Gets the value of an item that the NPC trades.
+     *
+     * @param itemName The name of the item.
+     * @return The item's value, or 0 if the item is not in the NPC's trade list.
+     */
     public int getItemValue(String itemName) {
         return tradeItems.getOrDefault(itemName, 0);
     }
 
+    /**
+     * Determines if the NPC gives money instead of reputation when trading.
+     *
+     * @return True if the NPC gives money, false if they provide reputation.
+     */
     public boolean givesMoney() {
         return givesMoney;
     }
 
+
+    /**
+     * Defines how the NPC interacts with the player.
+     * Each NPC has a unique dialogue.
+     */
     @Override
     public void interact() {
         switch (name) {

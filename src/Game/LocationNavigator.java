@@ -4,7 +4,11 @@ import Command.*;
 
 import java.io.*;
 import java.util.*;
-
+/**
+ * Class responsible for managing the navigation through locations in the game.
+ * It handles loading the map, adding items and NPCs to locations, and allowing the player to navigate, interact with NPCs,
+ * pick up items, and execute commands like 'give', 'marry', 'build', etc.
+ */
 public class LocationNavigator {
     private Map<String, Location> locations = new HashMap<>();
     private Player player;
@@ -13,13 +17,23 @@ public class LocationNavigator {
     private historyCommand historyCommand;
     private marryCommand marryCommand;
 
+    /**
+     * Initializes the LocationNavigator with commands and locations.
+     */
     public LocationNavigator() {
         this.buildCommand = new buildCommand();
         this.historyCommand = new historyCommand("history");
         this.marryCommand = new marryCommand();
     }
 
+    /**
+     * Loads the map from a file and sets up the locations and exits.
+     * It also adds items and NPCs to locations after loading the map.
+     *
+     * @param filename The name of the file containing the map information.
+     */
     public void loadMap(String filename) {
+        // Implementation details
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -42,6 +56,9 @@ public class LocationNavigator {
         addNPCsToLocations();
     }
 
+    /**
+     * Adds items to locations based on predefined conditions.
+     */
     private void addItemsToLocations() {
         Location bylany = locations.get("bylany");
         if (bylany != null) {
@@ -76,6 +93,9 @@ public class LocationNavigator {
 
     }
 
+    /**
+     * Adds NPCs to locations and assigns them tradeable items.
+     */
     private void addNPCsToLocations() {
         Location bylany = locations.get("bylany");
         if (bylany != null) {
@@ -121,6 +141,10 @@ public class LocationNavigator {
 
     }
 
+    /**
+     * Starts the location navigation process, allowing the player to interact with the game world,
+     * pick up items, interact with NPCs, and execute commands.
+     */
     public void navigate() {
         Scanner scanner = new Scanner(System.in);
         player = new Player("Pepa", locations.get("bylany"));
@@ -179,6 +203,11 @@ public class LocationNavigator {
         scanner.close();
     }
 
+    /**
+     * Moves the player to a new location if the exit exists.
+     *
+     * @param direction The direction to move the player in.
+     */
     private void movePlayer(String direction) {
         if (player.currentLocation.getExits().containsKey(direction)) {
             player.currentLocation = player.currentLocation.getExits().get(direction);
@@ -188,6 +217,11 @@ public class LocationNavigator {
         }
     }
 
+    /**
+     * Allows the player to pick up an item from the current location.
+     *
+     * @param itemName The name of the item to pick up.
+     */
     private void pickUpItem(String itemName) {
         Item itemToPick = null;
         for (Item item : player.currentLocation.getItems()) {
@@ -203,6 +237,12 @@ public class LocationNavigator {
         }
     }
 
+
+    /**
+     * Allows the player to interact with an NPC.
+     *
+     * @param npcName The name of the NPC to talk to.
+     */
     private void talkToNPC(String npcName) {
         for (NPC npc : player.currentLocation.getNPCs()) {
             if (npc.getName().equalsIgnoreCase(npcName)) {
@@ -212,4 +252,15 @@ public class LocationNavigator {
         }
         System.out.println("This character is not here.");
     }
+
+    /**
+     * Returns the map of locations in the game.
+     *
+     * @return The map of location names and their corresponding Location objects.
+     */
+    public Map<String, Location> getLocations() {
+        return locations;
+    }
+
+
 }
