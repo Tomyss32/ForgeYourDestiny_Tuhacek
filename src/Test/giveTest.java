@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
-class GiveCommandTest {
+class giveTest {
     private Player player;
     private NPC npc;
     private Item item;

@@ -17,15 +17,6 @@ public class marryCommand implements Command {
     }
 
     /**
-     * Constructs a marry command with a custom reputation requirement.
-     *
-     * @param requiredReputation The required reputation to get married.
-     */
-    public marryCommand(int requiredReputation) {
-        this.requiredReputation = requiredReputation;
-    }
-
-    /**
      * Executes the marriage command, checking if the player meets the reputation requirement.
      *
      * @param player The player executing the command.

@@ -23,20 +23,12 @@ public class Item {
     }
 
 
-    /**
-     * Returns the name of the item.
-     *
-     * @return The name of the item.
-     */
+
     public String getName() {
         return name;
     }
 
-    /**
-     * Returns the description of the item.
-     *
-     * @return The description of the item.
-     */
+
     public String getDescription() {
         return description;
     }

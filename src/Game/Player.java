@@ -104,20 +104,12 @@ public class Player {
         System.out.println("Reputation: " + reputation + " points");
     }
 
-    /**
-     * Gets the player's current reputation points.
-     *
-     * @return The player's reputation points.
-     */
+
     public int getReputation() {
         return reputation;
     }
 
-    /**
-     * Gets the player's current amount of money.
-     *
-     * @return The player's money balance.
-     */
+
     public int getMoney() {
         return money;
     }
