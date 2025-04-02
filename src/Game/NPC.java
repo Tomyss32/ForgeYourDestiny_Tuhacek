@@ -104,16 +104,27 @@ public class NPC extends Character {
             case "Caroline":
                 System.out.println("Caroline: Oi you are here for that bath aye!");
                 System.out.println("If you have the Soap you can take the bath");
-                System.out.println("After that bath take this old rusty Neklace and take it to Stara Kutna");
+                System.out.println("After that free bath take this old rusty Neklace and take it to Stara Kutna");
                 System.out.println("There you will find a Grandmother");
                 System.out.println("Give it to her for some shiny gold");
                 break;
 
             case "Grandmother":
                 System.out.println("Grandmother: The last 20 years of my life i have been searching for one uniqe neklace");
-                System.out.println("If you have the Neklace i will shower zou in gold");
+                System.out.println("If you have the Neklace i will shower you in gold");
                 System.out.println("if not though, take this food to that old fool at bylany");
                 System.out.println("I hope he will like it!");
+                break;
+
+            case "Henry":
+                System.out.println("Henry: I'm Henry!");
+                System.out.println("AAAnd you must be that wierd guy thats running around back and forth");
+                System.out.println("Here take this Leather and take it to that Grandmother at Stara Kutna");
+                System.out.println("She'll be happy that someone came to her");
+                System.out.println("You will gain some of that reputation.");
+                System.out.println("I will be very pleased if you could go to kutna hora!");
+                System.out.println("And fetch me some of that armor i hid there");
+                System.out.println("You should find it just fine");
                 break;
 
         }

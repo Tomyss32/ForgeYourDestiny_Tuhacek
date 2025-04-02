@@ -7,7 +7,7 @@ import Game.Player;
  * If the player has at least the required amount of gold, they can buy a forge and end the game.
  */
 public class buildCommand implements Command {
-    private static final int REQUIRED_GOLD = 100;
+    private static final int REQUIRED_GOLD = 150;
 
     /**
      * Executes the build command, checking if the player has enough gold.

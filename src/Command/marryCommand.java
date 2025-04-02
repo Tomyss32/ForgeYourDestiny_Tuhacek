@@ -6,7 +6,7 @@ import Game.Player;
  * The marryCommand allows the player to marry if they have high enough reputation.
  */
 public class marryCommand implements Command {
-    private static final int DEFAULT_REQUIRED_REPUTATION = 100; // Default required reputation
+    private static final int DEFAULT_REQUIRED_REPUTATION = 150; // Default required reputation
     private final int requiredReputation;
 
     /**

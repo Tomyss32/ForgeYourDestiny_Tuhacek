@@ -1,6 +1,7 @@
 package Game;
 
 import Command.*;
+import org.w3c.dom.ls.LSOutput;
 
 import java.io.*;
 import java.util.*;
@@ -69,11 +70,13 @@ public class LocationNavigator {
         Location kutnaHora = locations.get("kutnaHora");
         if (kutnaHora != null) {
             kutnaHora.addItem(new Item("Potion", "A valuable Potion. Seems fishy."));
+            kutnaHora.addItem(new Item("Armor", "I finally found it, i must have been looking for that crap for an eternity!!!!"));
 
         }
         Location staraKutna = locations.get("staraKutna");
         if (staraKutna != null) {
             staraKutna.addItem(new Item("Food", "Its a piece of art, i want to eat this so bad..."));
+            staraKutna.addItem(new Item("Flowers", " A wonderfull bouqet i have to go and give it to caroline as soon as possible."));
         }
 
         Location dablovka = locations.get("dablovka");
@@ -114,8 +117,9 @@ public class LocationNavigator {
 
         Location miskovice = locations.get("miskovice");
         if (miskovice != null) {
-            NPC Caroline = new NPC("Caroline", true);
+            NPC Caroline = new NPC("Caroline", false);
             Caroline.addTradeItem("Soap", 35);
+            Caroline.addTradeItem("Flowers", 50);
             miskovice.addNPC(Caroline);
         }
 
@@ -123,6 +127,7 @@ public class LocationNavigator {
         if (staraKutna != null) {
             NPC Grandmother = new NPC("Grandmother", true);
             Grandmother.addTradeItem("Neklace", 35);
+            Grandmother.addTradeItem("Leather", 15);
             staraKutna.addNPC(Grandmother);
         }
 
@@ -135,7 +140,8 @@ public class LocationNavigator {
         Location grunta = locations.get("grunta");
         if (grunta != null) {
             NPC Henry = new NPC("Henry", true);
-            Henry.addTradeItem("Leather", 20);
+            Henry.addTradeItem("Sword", 20);
+            Henry.addTradeItem("Armor", 45);
             grunta.addNPC(Henry);
         }
 
